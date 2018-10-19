@@ -19,6 +19,8 @@ def all_bible():
     response = requests.request("GET", url)
     return response.json()
 
+all_biblex = all_bible()
+
 @app.route('/', methods=['GET'])
 def get_tasks():
     book_list = books
@@ -30,8 +32,12 @@ def get_tasks():
     
     return jsonify(book_list)
 
+@app.route('/chapter/<chapter>', methods=['GET'])
+def get_chapters(chapter):
+    # chapter = chapter[0].upper()+chapter[1:]
+    # all_biblex = all_bible()
+    chapter = all_biblex[chapter]
+    return jsonify(len(chapter))
+
 if __name__ == '__main__':
     app.run()
-
-
-#  'books': <module 'books' (namespace)>, 'books.books': <module 'books.books' from 'C:\\Users\\Ever\\Documents\\code\\personal\\projects\\ever-bible\\BE-ever-bible\\books\\books.py'>,
