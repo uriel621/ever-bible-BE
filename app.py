@@ -39,5 +39,12 @@ def get_chapters(chapter):
     chapter = all_biblex[chapter]
     return jsonify(len(chapter))
 
+@app.route('/book/<book>/chapter/<chapter>', methods=['GET'])
+def get_chapter(book, chapter):
+    # chapter = chapter[0].upper()+chapter[1:]
+    # all_biblex = all_bible()
+    book = all_biblex[book][chapter]
+    return jsonify(book)
+
 if __name__ == '__main__':
     app.run()
